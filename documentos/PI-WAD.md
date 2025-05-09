@@ -1,6 +1,5 @@
 # Web Application Document - Projeto Individual - Módulo 2 - Inteli
 
-**_Os trechos em itálico servem apenas como guia para o preenchimento da seção. Por esse motivo, não devem fazer parte da documentação final._**
 
 ## Inflow
 
@@ -80,7 +79,7 @@ Atributos:
  Relações: 
  - id_usuario na tabela questionario é uma foreign key que referencia o campo id da tabela login. Essa relação 1:N significa que um usuário pode ter acesso a múltiplos questionários (um por dia), mas cada questionário pertence a apenas um usuário.
  - id_login na tabela atividades é uma foreign key que referencia o campo id da tabela login. É uma relação 1:N, pois um usuário pode criar diversas atividades, enquanto cada atividade, pertence a um único usuário.
- 
+
 
  **ENTIDADE: QUESTIONARIO** 
 
