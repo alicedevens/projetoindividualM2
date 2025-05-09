@@ -30,8 +30,11 @@ Portanto, esse sistema web busca gerenciar tarefas de maneira eficaz, unindo pro
 ### 2.1. Personas (Semana 01)
 
 Personas são personagens fictícios criados com o intuito de representar o cliente ideal para o negócio. Diferentemente do público-alvo, a persona apresenta características específicas e detalhadas, que ajudam a direcionar melhor tanto o desenvolivmento do produto, quanto as campanhas de marketing. Pensando nisso e objetivando uma solução acurada, criei a Juliana Fernandes, que seria a cliente ideal para o Inflow. A seguir, uma imagem que detalha o perfil da Juliana:
-
+<div align="center">
+    <small><strong style="font-size: 12px;">Persona (Figura 1);</strong></small><br>
 <img src="assets/PERSONA.jpg">
+ <small style="margin-top: 4px; font-size: 10px;">Fonte: Material produzido pela autora (2025)</small>
+</div>
 
 ### 2.2. User Stories (Semana 01)
 
@@ -54,9 +57,107 @@ User Story | Como uma profissional que lida com ansiedade, quero ter uma maneira
 
 ### 3.1. Modelagem do banco de dados (Semana 3)
 
-_Posicione aqui os diagramas de modelos relacionais do seu banco de dados, apresentando todos os esquemas de tabelas e suas relações. Utilize texto para complementar suas explicações, se necessário._
 
-_Posicione também o modelo físico com o Schema do BD (arquivo .sql)_
+<div align="center">
+    <small><strong style="font-size: 12px;">Diagrama do modelo inicial do banco de dados (Figura 2);</strong></small><br>
+<img src="/assets/diagrama_modelo_bancodedados.png">
+ <small style="margin-top: 4px; font-size: 10px;">Fonte: Material produzido pela autora (2025)</small>
+</div>
+
+O diagrama de modelo relacional do banco de dados é utilizado para ajudar a identificar como a informação flui em seu sistema, através do estabelecimento das relações entre os elementos do banco de dados. Assim, através dele é possível representar visualmente as relações entre as entidades (tabelas), e os seus atributos (colunas).
+Assim, para entender melhor o motivo das minhas escolhas do meu banco de dados, segue a estrutura de maneira mais detalhada: 
+
+**ENTIDADE: LOGIN**
+
+Objetivo: Armazenar os dados do usuário no sistema 
+
+Atributos: 
+ - id: identificador único do usuário, que usa o SERIAL;
+ - nome: nome do usuário, utiliza o o tipo VARCHAR;
+ - e-mail: e-mail utilizado para realizar o login;
+ - senha: senha escolhida pelo usuário para acessar o sistema;
+
+ Relações: 
+ - id_usuario na tabela questionario é uma foreign key que referencia o campo id da tabela login. Essa relação 1:N significa que um usuário pode ter acesso a múltiplos questionários (um por dia), mas cada questionário pertence a apenas um usuário.
+ - id_login na tabela atividades é uma foreign key que referencia o campo id da tabela login. É uma relação 1:N, pois um usuário pode criar diversas atividades, enquanto cada atividade, pertence a um único usuário.
+ 
+
+ **ENTIDADE: QUESTIONARIO** 
+
+ Objetivo: armazenar o que o usuário responder em cada questionário.
+
+ Atributos:
+ - id: identificador único do questionário, usa o SERIAL;
+ - nome: título do questionário, usa o VARCHAR;
+ - data: data do preenchimento, usa o TIMESTAMP;
+ - id_usuario: foreign key para o login, usa o INT;
+ - id_pergunta: foreign key para a entidade das perguntas, usa o INT;
+
+ Relações: 
+ - id_usuario na tabela questionario é uma foreign key que referencia o campo id da tabela login. Essa relação N:1 significa que um usuário pode ter acesso a múltiplos questionários (um por dia), mas cada questionário pertence a apenas um usuário.
+ - id_pergunta na tabela questionario é uma foreign key que referencia o campo id da entidade perguntas. É uma relação 1:N, porque em um questionário aparece mais de uma pergunta, mas cada pergunta está ligada a apenas um questionário (diário).
+
+
+
+**ENTIDADE: PERGUNTAS** 
+
+ Objetivo: armazenar as perguntas usadas no questionário.
+
+ Atributos:
+ - id: identificador único das perguntas, usa o tipo SERIAL;
+ - texto_perguntas: texto das perguntas, por exemplo: "De 1 a 5, sendo 1 exausto e 5 muito disposto, como você se sente para realizar as suas tarefas hoje?", usa o tipo TEXT.
+
+ Relações: 
+ - id_pergunta na tabela resposta é uma foreign key que referencia o campo id da tabela perguntas. É uma relação 1:1, pois cada pergunta tem apenas uma resposta.
+ - id_pergunta na tabela questionario é uma foreign key que referencia o campo id da entidade perguntas. É uma relação N:1, porque em um questionário aparece mais de uma pergunta, mas cada pergunta está ligada a apenas um questionário (diário).
+
+
+
+ **ENTIDADE: RESPOSTA** 
+
+ Objetivo: armazenar a resposta (avaliação) do usuário às perguntas.
+
+ Atributos:
+ - id: identificador único da resposta, usa o SERIAL;
+ - id_pergunta: foreign key para a entidade perguntas, usa o INT;
+ - avaliacao: valor da resposta/rate, seria o 1 ao 5, do exemplo citado anteriormente, usa o INT.
+
+
+ Relações: 
+ - id_pergunta na tabela resposta é uma foreign key que referencia o campo id da tabela perguntas. É uma relação 1:1, pois cada pergunta tem apenas uma resposta.
+
+
+ **ENTIDADE: ATIVIDADES** 
+
+ Objetivo: armazenar as tarefas que o usuário precisa realizar na semana.
+
+ Atributos:
+ - id: identificador único das atividades, usa o SERIAL;
+ - titulo: título da tarefa, utiliza o VARCHAR;
+ - descricao: descrição detalhada da tarefa, utiliza o VARCHAR;
+ - nivel_dificuldade: o quanto a pessoa considera difícil realizar aquela tarefa, usa o INT;
+ - duracao: tempo estimado para concluir a tarefa, usa o INT;
+ - prazo: data limite para entregar aquela tarefa, utiliza o DATE;
+ - id_login: foreign key para a tabela login, usa o INT.
+ - status: se a atividade está como pendente, em desenvolvimento ou concluída, foi utilizado o BOOLEAN.
+
+ Relações: 
+ - id_login na tabela atividades é uma foreign key que referencia o campo id da tabela login. É uma relação N:1, pois um usuário pode criar diversas atividades, enquanto cada atividade, pertence a um único usuário.
+
+
+
+
+**LEGENDA:** 
+ - SERIAL: para auto incremento dos números inteiros;
+ - INT: números inteiros;
+ - VARCHAR(): armazena um texto com limite de caracteres, que é definido dentro do parentêses;
+ - TEXT: armazena um texto, sem limite de caracteres
+ - TIMESTAMP: armazena a data e a hora;
+ - DATE: armazena a data.
+ - BOOLEAN: armazena valores binários.
+
+
+O arquivo do modelo físico do banco de dados se encontra <a href="/scripts/init.sql"> aqui! </a>
 
 ### 3.1.1 BD e Models (Semana 5)
 

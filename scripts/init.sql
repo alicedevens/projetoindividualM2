@@ -42,13 +42,9 @@ CREATE TABLE IF NOT EXISTS atividades (
   duracao INT NOT NULL, 
   prazo DATE,
   id_login INT NOT NULL,
+  status BOOLEAN, 
   FOREIGN KEY (id_login) REFERENCES login(id)
 );
 
-CREATE TABLE IF NOT EXITS dados_produtividade (
-  id SERIAL PRIMARY KEY DEFAULT,
-  porcentagem_tarefasCompletas INT,
-  mensagem_motivacional TEXT NOT NULL
-);
 
 
