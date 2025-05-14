@@ -1,6 +1,5 @@
 # Web Application Document - Projeto Individual - Módulo 2 - Inteli
 
-
 ## Inflow
 
 #### Alice Devens Carvalho
@@ -29,6 +28,7 @@ Portanto, esse sistema web busca gerenciar tarefas de maneira eficaz, unindo pro
 ### 2.1. Personas (Semana 01)
 
 Personas são personagens fictícios criados com o intuito de representar o cliente ideal para o negócio. Diferentemente do público-alvo, a persona apresenta características específicas e detalhadas, que ajudam a direcionar melhor tanto o desenvolivmento do produto, quanto as campanhas de marketing. Pensando nisso e objetivando uma solução acurada, criei a Juliana Fernandes, que seria a cliente ideal para o Inflow. A seguir, uma imagem que detalha o perfil da Juliana:
+
 <div align="center">
     <small><strong style="font-size: 12px;">Persona (Figura 1);</strong></small><br>
 <img src="assets/PERSONA.jpg">
@@ -37,25 +37,24 @@ Personas são personagens fictícios criados com o intuito de representar o clie
 
 ### 2.2. User Stories (Semana 01)
 
-| Identificação     | US01 - Juliana Fernades                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| User Story        | Como uma estudante de engenharia, quero ter a minha agenda organizada, de acordo com os níveis de dificuldade de cada tarefa, para que em dias que eu não esteja me sentindo bem, eu consiga realizar várias tarefas pequenas/fáceis, aumentando o meu senso de realização, e me motivando para estudar para as matérias que não gosto tanto.                                                                                                                                                                                                                            |
+| Identificação     | US01 - Juliana Fernades                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| User Story        | Como uma estudante de engenharia, quero ter a minha agenda organizada, de acordo com os níveis de dificuldade de cada tarefa, para que em dias que eu não esteja me sentindo bem, eu consiga realizar várias tarefas pequenas/fáceis, aumentando o meu senso de realização, e me motivando para estudar para as matérias que não gosto tanto.                                                                                                                                                                                                                                                    |
 | Critérios Investe | **Independente:** organizar a agenda por nível de dificuldade é uma funcionalidade isolada.<br> **Negociável:** os níveis de dificuldade podem ser ajustados de acordo com a necessidade do cliente.<br>**Valiosa:** cria um equilíbrio entre produtividade e saúde mental.<br>**Estimável:** é possível estimar facilmente o tempo que leva para a criação desses filtros.<br>**Pequena:** organizar os filtros é uma tarefa pequena, que pode ser concluída em uma sprint.<br>**Testável:** testes de usabilidade podem ser feitos para testar se a organização por filtos realmente funciona. |
 
-Identificação | US02 - Renato Lima |
-| --- | --- |
-User Story | Como um fundador de startup, quero receber relatórios automáticos semanais sobre a minha produtividade, para que eu consiga garantir que os projetos avançem conforme o esperado. |
+| Identificação | US02 - Renato Lima                                                                                                                                                                |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| User Story    | Como um fundador de startup, quero receber relatórios automáticos semanais sobre a minha produtividade, para que eu consiga garantir que os projetos avançem conforme o esperado. |
 
-Identificação | US03 - Rafaela Gomes |
-| --- | --- |
-User Story | Como uma profissional que lida com ansiedade, quero ter uma maneira simples e intuitiva de organizar as minhas tarefas, para que eu não tenha mais um motivo para ficar ansiosa, e assim, consiga ver claramente o meu progresso semanal, com mensagens motivacionais, caso eu decaia em alguma semana. |
+| Identificação | US03 - Rafaela Gomes                                                                                                                                                                                                                                                                                    |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| User Story    | Como uma profissional que lida com ansiedade, quero ter uma maneira simples e intuitiva de organizar as minhas tarefas, para que eu não tenha mais um motivo para ficar ansiosa, e assim, consiga ver claramente o meu progresso semanal, com mensagens motivacionais, caso eu decaia em alguma semana. |
 
 ---
 
 ## <a name="c3"></a>3. Projeto da Aplicação Web
 
 ### 3.1. Modelagem do banco de dados (Semana 3)
-
 
 <div align="center">
     <small><strong style="font-size: 12px;">Diagrama do modelo inicial do banco de dados (Figura 2);</strong></small><br>
@@ -64,97 +63,97 @@ User Story | Como uma profissional que lida com ansiedade, quero ter uma maneira
 </div>
 
 O diagrama de modelo relacional do banco de dados é utilizado para ajudar a identificar como a informação flui em seu sistema, através do estabelecimento das relações entre os elementos do banco de dados. Assim, através dele é possível representar visualmente as relações entre as entidades (tabelas), e os seus atributos (colunas).
-Assim, para entender melhor o motivo das minhas escolhas do meu banco de dados, segue a estrutura de maneira mais detalhada: 
+Assim, para entender melhor o motivo das minhas escolhas do meu banco de dados, segue a estrutura de maneira mais detalhada:
 
 **ENTIDADE: LOGIN**
 
-Objetivo: Armazenar os dados do usuário no sistema 
+Objetivo: Armazenar os dados do usuário no sistema
 
-Atributos: 
- - id: identificador único do usuário, que usa o SERIAL;
- - nome: nome do usuário, utiliza o o tipo VARCHAR;
- - e-mail: e-mail utilizado para realizar o login;
- - senha: senha escolhida pelo usuário para acessar o sistema;
+Atributos:
 
- Relações: 
- - id_usuario na tabela questionario é uma foreign key que referencia o campo id da tabela login. Essa relação 1:N significa que um usuário pode ter acesso a múltiplos questionários (um por dia), mas cada questionário pertence a apenas um usuário.
- - id_login na tabela atividades é uma foreign key que referencia o campo id da tabela login. É uma relação 1:N, pois um usuário pode criar diversas atividades, enquanto cada atividade, pertence a um único usuário.
+- id: identificador único do usuário, que usa o SERIAL;
+- nome: nome do usuário, utiliza o o tipo VARCHAR;
+- e-mail: e-mail utilizado para realizar o login;
+- senha: senha escolhida pelo usuário para acessar o sistema;
 
+Relações:
 
- **ENTIDADE: QUESTIONARIO** 
+- id_usuario na tabela questionario é uma foreign key que referencia o campo id da tabela login. Essa relação 1:N significa que um usuário pode ter acesso a múltiplos questionários (um por dia), mas cada questionário pertence a apenas um usuário.
+- id_login na tabela atividades é uma foreign key que referencia o campo id da tabela login. É uma relação 1:N, pois um usuário pode criar diversas atividades, enquanto cada atividade, pertence a um único usuário.
 
- Objetivo: armazenar o que o usuário responder em cada questionário.
+**ENTIDADE: QUESTIONARIO**
 
- Atributos:
- - id: identificador único do questionário, usa o SERIAL;
- - nome: título do questionário, usa o VARCHAR;
- - data: data do preenchimento, usa o TIMESTAMP;
- - id_usuario: foreign key para o login, usa o INT;
- - id_pergunta: foreign key para a entidade das perguntas, usa o INT;
+Objetivo: armazenar o que o usuário responder em cada questionário.
 
- Relações: 
- - id_usuario na tabela questionario é uma foreign key que referencia o campo id da tabela login. Essa relação N:1 significa que um usuário pode ter acesso a múltiplos questionários (um por dia), mas cada questionário pertence a apenas um usuário.
- - id_pergunta na tabela questionario é uma foreign key que referencia o campo id da entidade perguntas. É uma relação 1:N, porque em um questionário aparece mais de uma pergunta, mas cada pergunta está ligada a apenas um questionário (diário).
+Atributos:
 
+- id: identificador único do questionário, usa o SERIAL;
+- nome: título do questionário, usa o VARCHAR;
+- data: data do preenchimento, usa o TIMESTAMP;
+- id_usuario: foreign key para o login, usa o INT;
+- id_pergunta: foreign key para a entidade das perguntas, usa o INT;
 
+Relações:
 
-**ENTIDADE: PERGUNTAS** 
+- id_usuario na tabela questionario é uma foreign key que referencia o campo id da tabela login. Essa relação N:1 significa que um usuário pode ter acesso a múltiplos questionários (um por dia), mas cada questionário pertence a apenas um usuário.
+- id_pergunta na tabela questionario é uma foreign key que referencia o campo id da entidade perguntas. É uma relação 1:N, porque em um questionário aparece mais de uma pergunta, mas cada pergunta está ligada a apenas um questionário (diário).
 
- Objetivo: armazenar as perguntas usadas no questionário.
+**ENTIDADE: PERGUNTAS**
 
- Atributos:
- - id: identificador único das perguntas, usa o tipo SERIAL;
- - texto_perguntas: texto das perguntas, por exemplo: "De 1 a 5, sendo 1 exausto e 5 muito disposto, como você se sente para realizar as suas tarefas hoje?", usa o tipo TEXT.
+Objetivo: armazenar as perguntas usadas no questionário.
 
- Relações: 
- - id_pergunta na tabela resposta é uma foreign key que referencia o campo id da tabela perguntas. É uma relação 1:1, pois cada pergunta tem apenas uma resposta.
- - id_pergunta na tabela questionario é uma foreign key que referencia o campo id da entidade perguntas. É uma relação N:1, porque em um questionário aparece mais de uma pergunta, mas cada pergunta está ligada a apenas um questionário (diário).
+Atributos:
 
+- id: identificador único das perguntas, usa o tipo SERIAL;
+- texto_perguntas: texto das perguntas, por exemplo: "De 1 a 5, sendo 1 exausto e 5 muito disposto, como você se sente para realizar as suas tarefas hoje?", usa o tipo TEXT.
 
+Relações:
 
- **ENTIDADE: RESPOSTA** 
+- id_pergunta na tabela resposta é uma foreign key que referencia o campo id da tabela perguntas. É uma relação 1:1, pois cada pergunta tem apenas uma resposta.
+- id_pergunta na tabela questionario é uma foreign key que referencia o campo id da entidade perguntas. É uma relação N:1, porque em um questionário aparece mais de uma pergunta, mas cada pergunta está ligada a apenas um questionário (diário).
 
- Objetivo: armazenar a resposta (avaliação) do usuário às perguntas.
+**ENTIDADE: RESPOSTA**
 
- Atributos:
- - id: identificador único da resposta, usa o SERIAL;
- - id_pergunta: foreign key para a entidade perguntas, usa o INT;
- - avaliacao: valor da resposta/rate, seria o 1 ao 5, do exemplo citado anteriormente, usa o INT.
+Objetivo: armazenar a resposta (avaliação) do usuário às perguntas.
 
+Atributos:
 
- Relações: 
- - id_pergunta na tabela resposta é uma foreign key que referencia o campo id da tabela perguntas. É uma relação 1:1, pois cada pergunta tem apenas uma resposta.
+- id: identificador único da resposta, usa o SERIAL;
+- id_pergunta: foreign key para a entidade perguntas, usa o INT;
+- avaliacao: valor da resposta/rate, seria o 1 ao 5, do exemplo citado anteriormente, usa o INT.
 
+Relações:
 
- **ENTIDADE: ATIVIDADES** 
+- id_pergunta na tabela resposta é uma foreign key que referencia o campo id da tabela perguntas. É uma relação 1:1, pois cada pergunta tem apenas uma resposta.
 
- Objetivo: armazenar as tarefas que o usuário precisa realizar na semana.
+**ENTIDADE: ATIVIDADES**
 
- Atributos:
- - id: identificador único das atividades, usa o SERIAL;
- - titulo: título da tarefa, utiliza o VARCHAR;
- - descricao: descrição detalhada da tarefa, utiliza o VARCHAR;
- - nivel_dificuldade: o quanto a pessoa considera difícil realizar aquela tarefa, usa o INT;
- - duracao: tempo estimado para concluir a tarefa, usa o INT;
- - prazo: data limite para entregar aquela tarefa, utiliza o DATE;
- - id_login: foreign key para a tabela login, usa o INT.
- - status: se a atividade está como pendente, em desenvolvimento ou concluída, foi utilizado o BOOLEAN.
+Objetivo: armazenar as tarefas que o usuário precisa realizar na semana.
 
- Relações: 
- - id_login na tabela atividades é uma foreign key que referencia o campo id da tabela login. É uma relação N:1, pois um usuário pode criar diversas atividades, enquanto cada atividade, pertence a um único usuário.
+Atributos:
 
+- id: identificador único das atividades, usa o SERIAL;
+- titulo: título da tarefa, utiliza o VARCHAR;
+- descricao: descrição detalhada da tarefa, utiliza o VARCHAR;
+- nivel_dificuldade: o quanto a pessoa considera difícil realizar aquela tarefa, usa o INT;
+- duracao: tempo estimado para concluir a tarefa, usa o INT;
+- prazo: data limite para entregar aquela tarefa, utiliza o DATE;
+- id_login: foreign key para a tabela login, usa o INT.
+- status: se a atividade está como pendente, em desenvolvimento ou concluída, foi utilizado o BOOLEAN.
 
+Relações:
 
+- id_login na tabela atividades é uma foreign key que referencia o campo id da tabela login. É uma relação N:1, pois um usuário pode criar diversas atividades, enquanto cada atividade, pertence a um único usuário.
 
-**LEGENDA:** 
- - SERIAL: para auto incremento dos números inteiros;
- - INT: números inteiros;
- - VARCHAR(): armazena um texto com limite de caracteres, que é definido dentro do parentêses;
- - TEXT: armazena um texto, sem limite de caracteres
- - TIMESTAMP: armazena a data e a hora;
- - DATE: armazena a data.
- - BOOLEAN: armazena valores binários.
+**LEGENDA:**
 
+- SERIAL: para auto incremento dos números inteiros;
+- INT: números inteiros;
+- VARCHAR(): armazena um texto com limite de caracteres, que é definido dentro do parentêses;
+- TEXT: armazena um texto, sem limite de caracteres
+- TIMESTAMP: armazena a data e a hora;
+- DATE: armazena a data.
+- BOOLEAN: armazena valores binários.
 
 O arquivo do modelo físico do banco de dados se encontra <a href="/scripts/init.sql"> aqui! </a>
 
@@ -176,7 +175,27 @@ _Adicione as setas e explicações sobre como os dados fluem entre o Model, Cont
 
 ### 3.3. Wireframes (Semana 03)
 
-_Posicione aqui as imagens do wireframe construído para sua solução e, opcionalmente, o link para acesso (mantenha o link sempre público para visualização)._
+Desenvolvi wireframes de baixa fidelidade, para começar a pensar no design que terá a interface em contato com o usuário. Assim, para garantir coesão com o público-alvo, baseei cada tela em uma user story, citadas anteriormente.
+
+<div align="center">
+    <small><strong style="font-size: 12px;"> Wireframe de baixa fidelidade (Figura 3);</strong></small><br>
+<img src="/assets/wireframe.png">
+ <small style="margin-top: 4px; font-size: 10px;">Fonte: Material produzido pela autora (2025)</small>
+</div>
+
+**Primeira tela:**
+Tela de login, para o usuário inserir os seus dados.
+
+**Segunda tela:**
+Quando a pessoa entra na aplicação web pela primeira vez no dia, a primeira tela que aparece é um questionário que busca entender como a pessoa está se sentindo naquele dia. Essa tela se conecta diretamente com a User Story 1, da Juliana Fernandes, que gostaria que o seu calendário se conectasse com a sua saúde mental, para assim ter uma vida mais equilibrada.
+
+**Terceira tela:**
+Após responder o questionário, todas as vezes que o usuário entrar no Inflow, irá direto para a segunda tela, a qual contém as tasks, divididas por níveis de dificuldades, o que torna possível estabelecer quais atividades fazem mais sentido para ele naquele dia, de acordo com o seu estado mental. Essa tela se relaciona com a User Story 3, da Rafaela Gomes, que busca uma interface simples e intuitiva para organizar as suas tarefas.
+
+**Quarta tela:**
+No fim da semana, aparece a terceira tela, que é considerada um diferencial pelo Renato Lima, da User Story 2. Ele gostaria de ter acesso aos dados de produtividade dele, mostrando quantas tarefas foram concluídas, quantas estão em progesso e quantas ficaram para a próxima semana. Assim, essas informações aparecem através de um gráfico e detalhes sobre, na lateral.
+
+Segue o link para acesso aos wireframes: https://www.figma.com/design/xQW03eHXf4bps4OHpUcflh/Untitled?node-id=0-1&t=89IGHn78SldBtpyX-1
 
 ### 3.4. Guia de estilos (Semana 05)
 
