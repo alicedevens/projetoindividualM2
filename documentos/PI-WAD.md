@@ -201,13 +201,59 @@ Segue o link para acesso aos wireframes: https://www.figma.com/design/xQW03eHXf4
 
 _Descreva aqui orientações gerais para o leitor sobre como utilizar os componentes do guia de estilos de sua solução._
 
+O guia de estilos é uma coleção de elementos, regras e padrões que orienta a criação e a manutenção de interfaces visuais consistentes no desenvolvimento de produtos digitais. Entendendo sua importância para uma melhor organização e coerência visual do meu protótipo, desenvolvi o seguinte guia de estilos: 
+IMAGEM 
+Este aborda aspectos como tipografia, cores,  botões e layout geral. Na tipografia, utilizei a fonte Poppins em todo o projeto, variando apenas em tamanhos e espessura, mantendo assim, uma consistência visual. No quesito das cores, a primeira coluna refere-se as cores mais neutras, que utilizei nos fundos e nas letras, já a segunda coluna está relacionada aos tons de azul utilizados, sendo estes responsáveis pela identidade visual do Inflow, além disso, na terceira coluna estão as cores utilizadas nas estrelas dos livros.
+Ademais, também adicionei os componentes, que são a logo do Inflow e os livros que representam o nível de dificuldade das atividades, através da cor e da quantidade de estrelas. Em seguida, apresentei os botões de entrar, de voltar e de concluído, além dos que possuem a funcionalidade de abrir as tarefas e o que direciona aos dados de produtividade.
+
 ### 3.5. Protótipo de alta fidelidade (Semana 05)
 
 _Posicione aqui algumas imagens demonstrativas de seu protótipo de alta fidelidade e o link para acesso ao protótipo completo (mantenha o link sempre público para visualização)._
 
+Para garantir que a aplicação web esteja funcional e esteticamente bonita, desenvolvi o protótipo de alta fidelidade, simulando assim, a experiência do usuário antes de fazer a programação. Nele inclui cores, tipografia, componentes e botões, tornando-o mais próximo da realidade. Segue imagens:
+
+<div align="center">
+    <small><strong style="font-size: 12px;">Tela de login (Figura 5);</strong></small><br>
+<img src="/assets/tela1_prototipo.png">
+ <small style="margin-top: 4px; font-size: 10px;">Fonte: Material produzido pela autora (2025)</small>
+</div>
+
+<div align="center">
+    <small><strong style="font-size: 12px;">Questionário (Figura 6);</strong></small><br>
+<img src="/assets/tela2_prototipo.png">
+ <small style="margin-top: 4px; font-size: 10px;">Fonte: Material produzido pela autora (2025)</small>
+</div>
+
+<div align="center">
+    <small><strong style="font-size: 12px;">Atividades (Figura 7);</strong></small><br>
+<img src="/assets/tela3_prototipo.png">
+ <small style="margin-top: 4px; font-size: 10px;">Fonte: Material produzido pela autora (2025)</small>
+</div>
+
+<div align="center">
+    <small><strong style="font-size: 12px;">Atividade com descrição (Figura 8);</strong></small><br>
+<img src="/assets/tela4_prototipo.png">
+ <small style="margin-top: 4px; font-size: 10px;">Fonte: Material produzido pela autora (2025)</small>
+</div>
+
+<div align="center">
+    <small><strong style="font-size: 12px;">Dados de produtividade (Figura 9);</strong></small><br>
+<img src="/assets/tela5_prototipo.png">
+ <small style="margin-top: 4px; font-size: 10px;">Fonte: Material produzido pela autora (2025)</small>
+</div>
+
 ### 3.6. WebAPI e endpoints (Semana 05)
 
 _Utilize um link para outra página de documentação contendo a descrição completa de cada endpoint. Ou descreva aqui cada endpoint criado para seu sistema._
+
+A arquitetura MVC é uma abordagem que organiza a aplicação web em três componentes principais, o "model", o "view" e o "controller". Cada componente tem sua respectiva função, sendo assim, o "model" é o que se conecta diretamente com o banco de dados, através de comandos SQL (no caso do meu projeto). Já o "view" é o frontend da aplicação, o que significa que é o responsável pela interface com o usuário. O "controller" é justamente o que intermedia ambos, recebendo as requisições HTTPS e respondendo de forma adequada com os resultados, ao manipular o banco de dados. Para entender melhor como foi estruturada a arquitetura MVC do meu projeto, eu desenvolvi o seguinte diagrama: 
+
+<div align="center">
+    <small><strong style="font-size: 12px;">Diagrama de arquitetura MVC (Figura 10);</strong></small><br>
+<img src="/assets/arquitetura_MVC.png">
+ <small style="margin-top: 4px; font-size: 10px;">Fonte: Material produzido pela autora (2025)</small>
+</div>
+
 
 ### 3.7 Interface e Navegação (Semana 07)
 
