@@ -19,6 +19,18 @@ db.connect()
     const frontendRoutes = require('./routes/frontRoutes');
     app.use('/', frontendRoutes);
 
+    const atividadesRoutes = require('./routes/atividadesRoutes');
+    app.use('/atividades', atividadesRoutes);
+
+    const questionarioRoutes = require('./routes/questionarioRoutes');
+    app.use('/questionario', questionarioRoutes);
+
+    const perguntasRoutes = require('./routes/perguntasRoutes');
+    app.use('/perguntas', perguntasRoutes);
+
+    const respostaRoutes = require('./routes/respostaRoutes');
+    app.use('/resposta', respostaRoutes);
+
     // Middleware para lidar com erros de rota não encontrada
     app.use((req, res, next) => {
       res.status(404).send('Página não encontrada');

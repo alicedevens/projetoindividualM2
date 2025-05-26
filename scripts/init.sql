@@ -1,5 +1,3 @@
--- init.sql
-
 -- Criar extensão para suportar UUIDs, se ainda não estiver ativada
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
@@ -11,29 +9,32 @@ CREATE TABLE IF NOT EXISTS login (
   senha VARCHAR(100) UNIQUE NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS questionario (
-  id SERIAL PRIMARY KEY,
-  nome VARCHAR(100),
-  data TIMESTAMP NOT NULL, 
-  id_usuario INT,
-  id_pergunta INT ,
-  FOREIGN KEY (id_usuario) REFERENCES login(id),
-  FOREIGN KEY (id_pergunta) REFERENCES perguntas(id)
-
-);
-
+-- Tabela de perguntas
 CREATE TABLE IF NOT EXISTS perguntas (
   id SERIAL PRIMARY KEY,
   texto_perguntas TEXT NOT NULL
 );
 
+-- Tabela de questionários
+CREATE TABLE IF NOT EXISTS questionario (
+  id SERIAL PRIMARY KEY,
+  nome VARCHAR(100),
+  data TIMESTAMP NOT NULL, 
+  id_usuario INT,
+  id_pergunta INT,
+  FOREIGN KEY (id_usuario) REFERENCES login(id),
+  FOREIGN KEY (id_pergunta) REFERENCES perguntas(id)
+);
+
+-- Tabela de respostas
 CREATE TABLE IF NOT EXISTS resposta (
   id SERIAL PRIMARY KEY,
   id_pergunta INT,
   avaliacao INT,
   FOREIGN KEY (id_pergunta) REFERENCES perguntas(id)
-)
+);
 
+-- Tabela de atividades
 CREATE TABLE IF NOT EXISTS atividades (
   id_atividades SERIAL PRIMARY KEY, 
   titulo VARCHAR(80), 
@@ -45,6 +46,3 @@ CREATE TABLE IF NOT EXISTS atividades (
   status BOOLEAN, 
   FOREIGN KEY (id_login) REFERENCES login(id)
 );
-
-
-

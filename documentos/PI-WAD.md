@@ -159,19 +159,103 @@ O arquivo do modelo físico do banco de dados se encontra <a href="/scripts/init
 
 ### 3.1.1 BD e Models (Semana 5)
 
-_Descreva aqui os Models implementados no sistema web_
+Models são responsáveis por representar o negócio e por manipular os dados da aplicação, sendo assim, são eles que tem acesso direto ao banco de dados.
+
+No caso da minha aplicação web, temos os seguintes models:
+
+1. LOGIN/USERS: representa os usuários cadastrados no sistema. Possui como atributos:
+
+- id: identificador único do usuário
+- nome: nome do usuário
+- e-mail: endereço de e-mail
+- senha: senha de acesso 
+
+2. QUESTIONÁRIO: modela os questionários. Tem como atributos:
+- id: identificador do questionário
+- nome: título do questionário
+- data: data de aplicação
+- id_usuario: referência ao usuário que respondeu
+- id_pergunta: referência à pergunta associada
+
+3. PERGUNTAS: armazena as perguntas que compõem os questionários aplicados aos usuários, no início de cada dia. Seus atributos são: 
+- id: identificador único da pergunta
+- texto_perguntas: conteúdo da pergunta
+
+4. RESPOSTA: armazena as respostas fornecidas pelos usuários aos questionários. Seus atributos são:
+- id: identificador da resposta
+- id_pergunta: referência à pergunta respondida
+- avaliacao: rate atribuído na resposta
+
+5. ATIVIDADES: representa atividades que devem ser realizadas pelo usuário. Possui como atributos:
+- id: identificador da atividade
+- título: título da atividade
+- descrição: detalhes da tarefa
+- nivel_dificuldade: classificação de dificuldade
+- duração: tempo estimado de execução
+- prazo: data limite para conclusão
+- id_login: referência ao usuário responsável
+- status: estado atual da atividade (ex: pendente, concluída)
+
+
+Para demonstrar a estrutura geral que utilizei para implementar o model no código, trouxe a da tela de login como exemplo. Segue o código:
+
+```js 
+const db = require('../config/db');
+
+class Login {
+  static async getAllUsers() {
+    const result = await db.query('SELECT * FROM login');
+    return result.rows;
+  }
+
+  static async getUserById(id) {
+    const result = await db.query('SELECT * FROM login WHERE id = $1', [id]);
+    return result.rows[0];
+  }
+
+  static async createUser(data) {
+    const result = await db.query(
+      'INSERT INTO login (nome, email, senha) VALUES ($1, $2, $3) RETURNING *',
+      [data.nome, data.email, data.senha]
+    );
+    return result.rows[0];
+  }
+
+  static async updateUser(id, data) {
+    const result = await db.query(
+      'UPDATE login SET nome = $1, email = $2, senha = $3 WHERE id = $4 RETURNING *',
+      [data.nome, data.email, data.senha, id]
+    );
+    return result.rows[0];
+  }
+
+  static async deleteUser(id) {
+    const result = await db.query('DELETE FROM login WHERE id = $1 RETURNING *', [id]);
+    return result.rowCount > 0;
+  }
+}
+
+module.exports = Login;
+```
 
 ### 3.2. Arquitetura (Semana 5)
 
-_Posicione aqui o diagrama de arquitetura da sua solução de aplicação web. Atualize sempre que necessário._
+A arquitetura MVC é uma abordagem que organiza a aplicação web em três componentes principais, o "model", o "view" e o "controller". Cada componente tem sua respectiva função, sendo assim, o "model" é o que se conecta diretamente com o banco de dados, através de comandos SQL (no caso do meu projeto). Já o "view" é o frontend da aplicação, o que significa que é o responsável pela interface com o usuário. O "controller" é justamente o que intermedia ambos, recebendo as requisições HTTPS e respondendo de forma adequada com os resultados, ao manipular o banco de dados. Para entender melhor como foi estruturada a arquitetura MVC do meu projeto, eu desenvolvi o seguinte diagrama: 
 
-**Instruções para criação do diagrama de arquitetura**
+<div align="center">
+    <small><strong style="font-size: 12px;">Diagrama de arquitetura MVC (Figura 10);</strong></small><br>
+<img src="/assets/arquitetura_MVC.png">
+ <small style="margin-top: 4px; font-size: 10px;">Fonte: Material produzido pela autora (2025)</small>
+</div>
 
-- **Model**: A camada que lida com a lógica de negócios e interage com o banco de dados.
-- **View**: A camada responsável pela interface de usuário.
-- **Controller**: A camada que recebe as requisições, processa as ações e atualiza o modelo e a visualização.
+Através do diagrama, é possível perceber que foram criados controllers dedicados a login, questionários, perguntas, respostas e atividades. Cada controller gerencia as regras de negócio e interage com os models, que representam as tabelas do banco de dados PostgreSQL. 
 
-_Adicione as setas e explicações sobre como os dados fluem entre o Model, Controller e View._
+As rotas, evidenciadas pelas setas, indicam o fluxo de requisições e respostas entre os componentes,conectando o frontend com o backend, por meio de endpoints REST. 
+
+O backend é desenvolvido em Node.js com suporte a frameworks como Express, garantindo uma integração eficiente com o banco de dados. 
+
+No frontend, as views são renderizadas nos navegadores, permitindo que o usuário visualize e interaja com os dados, como responder questionários, acompanhar atividades e realizar login no sistema. Apesar disso, elas estão como "próximos passos", pois ainda serão desenvolvidas no decorrer do projeto.
+
 
 ### 3.3. Wireframes (Semana 03)
 
@@ -199,15 +283,131 @@ Segue o link para acesso aos wireframes: https://www.figma.com/design/xQW03eHXf4
 
 ### 3.4. Guia de estilos (Semana 05)
 
-_Descreva aqui orientações gerais para o leitor sobre como utilizar os componentes do guia de estilos de sua solução._
+O guia de estilos é uma coleção de elementos, regras e padrões que orienta a criação e a manutenção de interfaces visuais consistentes no desenvolvimento de produtos digitais. Entendendo sua importância para uma melhor organização e coerência visual do meu protótipo, desenvolvi o seguinte guia de estilos: 
+
+<div align="center">
+    <small><strong style="font-size: 12px;"> Mini Guia de Estilos (Figura 4);</strong></small><br>
+<img src="/assets/guia_de_estilos.png">
+ <small style="margin-top: 4px; font-size: 10px;">Fonte: Material produzido pela autora (2025)</small>
+</div>
+
+Este aborda aspectos como tipografia, cores e   botões. Na tipografia, utilizei a fonte Poppins em todo o projeto, variando apenas em tamanhos e espessura, mantendo assim, uma consistência visual. No quesito das cores, a primeira coluna refere-se as cores mais neutras, que utilizei nos fundos e nas letras, já a segunda coluna está relacionada aos tons de azul utilizados, sendo estes responsáveis pela identidade visual do Inflow, além disso, na terceira coluna estão as cores utilizadas nas estrelas dos livros.
+
+Ademais, também adicionei os componentes, que são a logo do Inflow e os livros que representam o nível de dificuldade das atividades, através da cor e da quantidade de estrelas. Em seguida, apresentei os botões de entrar, de voltar e de concluído, além dos que possuem a funcionalidade de abrir as tarefas e o que direciona aos dados de produtividade.
 
 ### 3.5. Protótipo de alta fidelidade (Semana 05)
 
-_Posicione aqui algumas imagens demonstrativas de seu protótipo de alta fidelidade e o link para acesso ao protótipo completo (mantenha o link sempre público para visualização)._
+
+Para garantir que a aplicação web esteja funcional e esteticamente bonita, desenvolvi o protótipo de alta fidelidade, simulando assim, a experiência do usuário antes de fazer a programação. Nele inclui cores, tipografia, componentes e botões, tornando-o mais próximo da realidade. Segue imagens:
+
+<div align="center">
+    <small><strong style="font-size: 12px;">Tela de login (Figura 5);</strong></small><br>
+<img src="/assets/tela1_prototipo.png">
+ <small style="margin-top: 4px; font-size: 10px;">Fonte: Material produzido pela autora (2025)</small>
+</div>
+
+A tela de login serve para que o usuário tenha maior segurança ao utilizar essa aplicação. Assim, precisará adentrar os dados: nome, e-mail e senha. Além disso, para passar para a próxima tela, deverá apertar o botão "entrar". <br>
+
+
+<div align="center">
+    <small><strong style="font-size: 12px;">Questionário (Figura 6);</strong></small><br>
+<img src="/assets/tela2_prototipo.png">
+ <small style="margin-top: 4px; font-size: 10px;">Fonte: Material produzido pela autora (2025)</small>
+</div>
+O questionário é utilizado para entender, através de três perguntas, o quanto a pessoa consegue se dispor para realizar as suas tarefas naquele dia. Ao finalizar, bastará clicar em "concluído" para seguir para a próxima tela.
+
+
+<div align="center">
+    <small><strong style="font-size: 12px;">Atividades (Figura 7);</strong></small><br>
+<img src="/assets/tela3_prototipo.png">
+ <small style="margin-top: 4px; font-size: 10px;">Fonte: Material produzido pela autora (2025)</small>
+</div>
+
+Essa tela foi alterada em comparação aos wireframes. Para uma organização visual mais clara, optei por utilizar os livros como demonstrativos do nível de dificuldade da tarefa, ao invés de separar isso apenas no "a fazer". Sendo assim, os livros de capa azul clara e apenas uma estrela, representam as tarefas de nível fácil. A dificuldade aumenta conforme a cor da capa se intensifica e o número de estrelas no livro cresce. 
+
+Ainda nas tarefas, adicionei a opção de colocar um título para ela e a duração estimada, para que a pessoa consiga se orientar melhor em qual tarefa escolher, sem necessariamente ter que abri-la para saber do que se trata.
+
+Além disso, também adicionei um botão no canto superior direito, que leva a tela dos dados de produtividade da semana.
+
+<div align="center">
+    <small><strong style="font-size: 12px;">Atividade com descrição (Figura 8);</strong></small><br>
+<img src="/assets/tela4_prototipo.png">
+ <small style="margin-top: 4px; font-size: 10px;">Fonte: Material produzido pela autora (2025)</small>
+</div>
+Ao apertar em qualquer tarefa na tela anterior, a pessoa será direcionada a essa tela, que se diferencia apenas pela cor e pelo livro, dependendo do nível de dificuldade. Aqui, o usuário poderá editar a tarefa e adicionar uma descrição. Essa tela não existia nos wireframes, e foi feita para que a edição das tasks se tornasse mais fácil.
+
+Além disso, para retornar a tela de atividades, basta apertar o botão "voltar".
+
+
+<div align="center">
+    <small><strong style="font-size: 12px;">Dados de produtividade (Figura 9);</strong></small><br>
+<img src="/assets/tela5_prototipo.png">
+ <small style="margin-top: 4px; font-size: 10px;">Fonte: Material produzido pela autora (2025)</small>
+</div>
+Essa é a tela de dados de produtividade, onde o usuário poderá ver qual a porcentagem de tarefas de cada nível de dificuldade, que realizou durante a semana. 
+
+Por motivos de complexidade, resolvi realizar algumas alterações em relação ao wireframe e as user stories. Quanto ao wireframe, optei por manter apenas um gráfico, de maneira a tornar o processo de prgramação mais simples. Já em relação a user story, decidi tirar a frase motivacional, por ser algo que não agrega tanto valor, em comparação com suas outras funcionalidades, e que poderia não sair tão bom como o esperado, em razão do tempo e do momento que estou (ainda aprendendo o básico para fazer uma aplicação web).
+
+Segue o link para acesso ao protótipo: https://www.figma.com/design/xQW03eHXf4bps4OHpUcflh/pond-UX---projeto-individual?node-id=0-1&t=pAB3D8Jcc6K01vmW-1 
+
 
 ### 3.6. WebAPI e endpoints (Semana 05)
 
-_Utilize um link para outra página de documentação contendo a descrição completa de cada endpoint. Ou descreva aqui cada endpoint criado para seu sistema._
+
+Uma WebAPI é uma API, isto é, uma interface que permite que diferentes softwares troquem informações, porém acessada pela internet. Assim, os endpoints são  responsáveis por executar funções específicas da WebAPI, através de URLs, que definem os caminhos específicos a serem utilizados.
+
+Para analisar os endpoints da minha aplicação, organizei por entidades e utilizei o padrão REST:
+
+**LOGIN (usuários):**
+1) GET /users →  retorna todos os usuários cadastrados.
+
+2) GET /users/:id → retorna um usuário específico, utilizando como parâmetro o id do usuário.
+
+3) POST /users → cadastra um novo usuário, utilizando um corpo JSON.
+
+4) PUT /users/:id → atualiza os dados de um usuário, utilizando o id do usuário como parâmetro.
+
+5) DELETE /users/:id → deleta um usuário pelo id.
+
+
+**ATIVIDADES:**
+1) GET /atividades → Retorna todas as atividades registradas no sistema.
+
+2) GET /atividades/:id → retorna os dados de uma atividade específica, com base no id.
+
+3) GET /atividades/toDo → retorna apenas as atividades com status "a fazer".
+
+4) GET /atividades/done → retorna apenas as atividades concluídas.
+
+5) POST /atividades → cria uma nova atividade, utilizando um corpo JSON.
+
+6) PUT /atividades/:id → atualiza uma atividade específica, utilizando o id da atividade como parâmetro.
+
+7) DELETE /atividades/:id → deleta uma atividade pelo id.
+
+**QUESTIONÁRIO:**
+1) GET /questionario → retorna todos os questionários.
+
+2) GET /questionario/:id → retorna um questionário específico, utilizando o id como parâmetro.
+
+3) POST /questionario → cria um novo questionário, utilizando um corpo JSON.
+
+**PERGUNTAS:**
+1) GET /perguntas → retorna todas as perguntas cadastradas.
+
+2) GET /perguntas/:id → retorna uma pergunta específica por id.
+
+3) POST /perguntas → cria uma nova pergunta.
+
+**RESPOSTA:**
+1) GET /resposta → retorna todas as respostas.
+
+2) GET /resposta/:id → retorna uma resposta específica por id.
+
+3) POST /resposta → cria uma nova resposta, utilizando um corpo JSON.
+
+4) PUT /resposta/:id → atualiza uma resposta existente, utilizando o id como parâmetro.
+
 
 ### 3.7 Interface e Navegação (Semana 07)
 
