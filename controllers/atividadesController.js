@@ -45,7 +45,7 @@ const getAtividadesDone = async (req, res) => {
 const createAtividades = async (req, res) => {
   try {
     const { titulo, descricao, nivel_dificuldade, duracao, prazo, id_login, status } = req.body;
-    const newatividades = await atividadesModel.createAtividades(titulo, descricao, nivel_dificuldade, duracao, prazo, id_login, status);
+    const newAtividades = await atividadesModel.createAtividades(titulo, descricao, nivel_dificuldade, duracao, prazo, id_login, status);
     res.status(201).json(newAtividades);
   } catch (error) {
     res.status(500).json({ error: error.message });
