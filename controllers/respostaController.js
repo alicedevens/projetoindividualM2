@@ -48,6 +48,16 @@ const updateResposta = async (req, res) => {
   }
 };
 
+const saveRespostas = async (req, res) => {
+  try {
+    const { q1, q2, q3 } = req.body;
+    await respostaModel.saveRespostas({ q1, q2, q3});
+    res.render('atividades');
+  } catch (error) {
+    res.status(500).send('Erro ao salvar respostas');
+  }
+};
+
 
 
 module.exports = {
@@ -55,4 +65,5 @@ module.exports = {
   getRespostaById,
   createResposta,
   updateResposta,
+  saveRespostas,
 };

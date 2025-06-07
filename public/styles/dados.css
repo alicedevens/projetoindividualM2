@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background-color: #f9f5f2;
+}
+
+.container {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+
+canvas {
+  margin-bottom: 30px;
+}
+
+p {
+  font-size: 1.2rem;
+  line-height: 1.4;
+  margin-bottom: 40px;
+}
+
+.btn-voltar {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: #006d90;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+

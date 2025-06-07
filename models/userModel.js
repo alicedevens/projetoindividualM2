@@ -11,6 +11,14 @@ class Login {
     return result.rows[0];
   }
 
+  static async getUserByCredentials(nome, email, senha) {
+    const result = await db.query(
+      'SELECT * FROM login WHERE nome = $1 AND email = $2 AND senha = $3',
+      [nome, email, senha]
+    );
+    return result.rows[0];
+  }
+  
   static async createUser(data) {
     const result = await db.query(
       'INSERT INTO login (nome, email, senha) VALUES ($1, $2, $3) RETURNING *',

@@ -1,6 +1,6 @@
 // controllers/atividadesController.js
 
-const atividadesModel = require('../models/atividadesModel');
+const atividadesModel = require("../models/atividadesModel");
 
 const getAllAtividades = async (req, res) => {
   try {
@@ -17,7 +17,7 @@ const getAtividadesById = async (req, res) => {
     if (atividades) {
       res.status(200).json(atividades);
     } else {
-      res.status(404).json({ error: 'Atividade não encontrada' });
+      res.status(404).json({ error: "Atividade não encontrada" });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -44,8 +44,24 @@ const getAtividadesDone = async (req, res) => {
 
 const createAtividades = async (req, res) => {
   try {
-    const { titulo, descricao, nivel_dificuldade, duracao, prazo, id_login, status } = req.body;
-    const newAtividades = await atividadesModel.createAtividades(titulo, descricao, nivel_dificuldade, duracao, prazo, id_login, status);
+    const {
+      titulo,
+      descricao,
+      nivel_dificuldade,
+      duracao,
+      prazo,
+      id_login,
+      status,
+    } = req.body;
+    const newAtividades = await atividadesModel.createAtividades(
+      titulo,
+      descricao,
+      nivel_dificuldade,
+      duracao,
+      prazo,
+      id_login,
+      status
+    );
     res.status(201).json(newAtividades);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -54,12 +70,29 @@ const createAtividades = async (req, res) => {
 
 const updateAtividades = async (req, res) => {
   try {
-    const { titulo, descricao, nivel_dificuldade, duracao, prazo, id_login, status } = req.body;
-    const updatedAtividades = await atividadesModel.updateAtividade(req.params.id, titulo, descricao, nivel_dificuldade, duracao, prazo, id_login, status);
+    const {
+      titulo,
+      descricao,
+      nivel_dificuldade,
+      duracao,
+      prazo,
+      id_login,
+      status,
+    } = req.body;
+    const updatedAtividades = await atividadesModel.updateAtividade(
+      req.params.id,
+      titulo,
+      descricao,
+      nivel_dificuldade,
+      duracao,
+      prazo,
+      id_login,
+      status
+    );
     if (updatedAtividades) {
       res.status(200).json(updatedAtividades);
     } else {
-      res.status(404).json({ error: 'Atividade não encontrada' });
+      res.status(404).json({ error: "Atividade não encontrada" });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -68,11 +101,13 @@ const updateAtividades = async (req, res) => {
 
 const deleteAtividades = async (req, res) => {
   try {
-    const deletedAtividades = await atividadesModel.deleteAtividades(req.params.id);
+    const deletedAtividades = await atividadesModel.deleteAtividades(
+      req.params.id
+    );
     if (deletedAtividades) {
       res.status(200).json(deletedAtividades);
     } else {
-      res.status(404).json({ error: 'Atividade não encontrada' });
+      res.status(404).json({ error: "Atividade não encontrada" });
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -86,5 +121,5 @@ module.exports = {
   getAtividadesDone,
   createAtividades,
   updateAtividades,
-  deleteAtividades
+  deleteAtividades,
 };

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Descrição - Atividade Nível Fácil</title>
+    <link rel="stylesheet" href="/styles/nivel_facil.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="card" id="card">
+        <img id = "imagem" class="icon" alt="ícone livro" />
+        <h2 class="titulo" id="titulo-tarefa"></h2>
+
+        <div class="descricao-container">
+          <label for="descricao">Descrição:</label>
+          <p id="descricao"></p>
+        </div>
+      </div>
+
+      <button id="botao" class="btn-voltar">Voltar</button>
+  
+    </div>
+  </body>
+  <script>
+    var caminho = window.location.pathname;
+    var partes = caminho.split("/");
+    var id = partes[2];
+    async function carregarAtividade() {
+      const resposta = await fetch(`http://localhost:3000/atividades/${id}`);
+      const tarefa = await resposta.json();
+      const titulo = document.getElementById('titulo-tarefa');
+      titulo.textContent = tarefa.titulo;
+      const descricao = document.getElementById('descricao');
+      descricao.textContent = tarefa.descricao;
+
+      const card = document.getElementById("card");
+      const imagem = document.getElementById("imagem");
+
+      if (tarefa.nivel_dificuldade == 1) {
+        card.style.backgroundColor = "#B1DCF0";
+        imagem.src = "/assets/livro_facil.png";
+       } else if (tarefa.nivel_dificuldade == 2) {
+          card.style.backgroundColor = "#2E77A1";
+          imagem.src = "/assets/livro_medio.png";
+        } else {
+          card.style.backgroundColor = "#06405E";
+          imagem.src = "/assets/livro_dificil.png";
+        }
+    }
+    carregarAtividade();
+
+    const botao = document.getElementById("botao");
+    botao.addEventListener('click', ()=> {
+      window.location.href = "/atividades"
+    })
+
+
+  </script>
+</html>
