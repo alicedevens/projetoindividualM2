@@ -11,6 +11,23 @@ const getAllUsers = async (req, res) => {
   }
 };
 
+const getUserByCredentials = async (req, res) => {
+  const { nome, email, senha } = req.body;
+  try {
+    // Busca usuário pelo nome, email e senha
+    const result = await userModel.getUserByCredentials(nome, email, senha);
+    if (result) {
+      // Usuário autenticado, redireciona para o questionário
+      res.redirect('/atividades');
+    } else {
+      // Usuário não encontrado, renderiza login com erro
+      res.render('pages/login', { error: 'Credenciais inválidas' });
+    }
+  } catch (error) {
+    res.render('pages/login', { error: 'Erro ao autenticar' });
+  }
+};
+
 const getUserById = async (req, res) => {
   try {
     const user = await userModel.getUserById(req.params.id);
@@ -64,6 +81,7 @@ const deleteUser = async (req, res) => {
 module.exports = {
   getAllUsers,
   getUserById,
+  getUserByCredentials,
   createUser,
   updateUser,
   deleteUser

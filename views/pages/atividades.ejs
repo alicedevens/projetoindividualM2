@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de Tarefas</title>
+    <link rel="stylesheet" href="/styles/atividades.css" />
+  </head>
+  <body>
+    <div class="page-container">
+      <div class="floating-icon">
+        <img src="/assets/icone_dados.png" alt="Ícone de gráfico" />
+      </div>
+
+      <section id="a-fazer">
+        <h2>A FAZER</h2>
+      </section>
+
+      <section id="feito">
+        <h2>CONCLUÍDAS</h2>
+      </section>
+    </div>
+  </body>
+  <script>
+    async function carregarTarefas() {
+      const resposta = await fetch("http://localhost:3000/atividades/list");
+      const tarefas = await resposta.json();
+      console.log(tarefas);
+
+      var sectionAFazer = document.getElementById("a-fazer");
+      var sectionFeito = document.getElementById("feito");
+
+      tarefas.forEach((tarefa) => {
+        console.log(tarefa);
+        const card = document.createElement("div");
+        const paragrafo = document.createElement("p");
+        const imagem = document.createElement("img");
+
+        paragrafo.textContent = `${tarefa.titulo} - ${tarefa.duracao} min`;
+        card.className = "task";
+
+        if (tarefa.is_finished == true) {
+          sectionFeito.append(card);
+        } else {
+          sectionAFazer.append(card);
+        }
+
+        if (tarefa.nivel_dificuldade == 1) {
+          card.style.backgroundColor = "#B1DCF0";
+          imagem.src = "/assets/livro_facil.png";
+        } else if (tarefa.nivel_dificuldade == 2) {
+          card.style.backgroundColor = "#2E77A1";
+          imagem.src = "/assets/livro_medio.png";
+        } else {
+          card.style.backgroundColor = "#06405E";
+          imagem.src = "/assets/livro_dificil.png";
+        }
+        var id = tarefa.id_atividades;
+        card.addEventListener("click", () => {
+          window.location.href = `/nivel_facil/${id}`;
+        });
+
+        card.append(imagem);
+        card.append(paragrafo);
+      });
+    }
+    carregarTarefas();
+  </script>
+</html>
+
+

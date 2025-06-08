@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Autoavaliação</title>
+  <link rel="stylesheet" href="styles/questionario.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Responda com sinceridade:</h1>
+    
+    <form id="questionario">
+    <div class="question">
+      <p>1. Como você avalia seu bem-estar emocional e mental neste momento?<br>
+        <span class="sub">(1 = Muito sobrecarregado(a) ou ansioso(a), 5 = Calmo(a) e emocionalmente estável)</span>
+      </p>
+      <div class="options">
+        <label><input type="radio" name="q1" value="1" required> 1</label>
+        <label><input type="radio" name="q1" value="2"> 2</label>
+        <label><input type="radio" name="q1" value="3"> 3</label>
+        <label><input type="radio" name="q1" value="4"> 4</label>
+        <label><input type="radio" name="q1" value="5"> 5</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <p>2. Quanta energia e disposição você sente para realizar suas tarefas hoje?<br>
+        <span class="sub">(1 = Sem energia ou motivação, 5 = Cheio(a) de energia e vontade de agir)</span>
+      </p>
+      <div class="options">
+        <label><input type="radio" name="q2" value="1" required> 1</label>
+        <label><input type="radio" name="q2" value="2"> 2</label>
+        <label><input type="radio" name="q2" value="3"> 3</label>
+        <label><input type="radio" name="q2" value="4"> 4</label>
+        <label><input type="radio" name="q2" value="5"> 5</label>
+      </div>
+    </div>
+
+    <div class="question">
+      <p>3. Quanto tempo útil você sente que tem hoje para se dedicar às suas atividades?<br>
+        <span class="sub">(1 = Quase nenhum tempo livre, 5 = Muito tempo disponível e organizado)</span>
+      </p>
+      <div class="options">
+        <label><input type="radio" name="q3" value="1" required> 1</label>
+        <label><input type="radio" name="q3" value="2"> 2</label>
+        <label><input type="radio" name="q3" value="3"> 3</label>
+        <label><input type="radio" name="q3" value="4"> 4</label>
+        <label><input type="radio" name="q3" value="5"> 5</label>
+      </div>
+    </div>
+
+    <button type="submit" class="submit-btn">Concluído</button>
+  </form>
+
+  </div>
+
+  <script>
+    const form = document.getElementById('questionario');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault(); // Impede envio padrão do formulário
+
+      const formData = new FormData(form);
+
+      // Verifica se todas as perguntas foram respondidas
+      if (!formData.get('q1') || !formData.get('q2') || !formData.get('q3')) {
+        errorMsg.textContent = 'Por favor, responda todas as perguntas.';
+        return;
+      }
+
+      // Converte FormData para JSON
+      const data = {
+        q1: formData.get('q1'),
+        q2: formData.get('q2'),
+        q3: formData.get('q3')
+      };
+
+      try {
+        const response = await fetch('/resposta/save', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    });
+  </script>
+  
+</body>
+</html>

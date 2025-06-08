@@ -27,6 +27,13 @@ class Resposta {
     return result.rows[0];
   }
 
+  static async saveRespostas({ id_perguntas, avaliacao }) {
+  const result = await db.query(
+    'INSERT INTO resposta (id_perguntas, avaliacao) VALUES ($1, $2) RETURNING *',
+    [id_perguntas, avaliacao]
+  );
+  return result.rows[0];
+}
 
 }
 
