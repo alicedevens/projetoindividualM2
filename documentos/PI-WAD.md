@@ -411,9 +411,76 @@ Para analisar os endpoints da minha aplicação, organizei por entidades e utili
 
 ### 3.7 Interface e Navegação (Semana 07)
 
-_Descreva e ilustre aqui o desenvolvimento do frontend do sistema web, explicando brevemente o que foi entregue em termos de código e sistema. Utilize prints de tela para ilustrar._
 
----
+O frontend é a parte do desenvolvimento web responsável pela interface com a qual o usuário interage diretamente. Ele envolve a criação e o design de páginas e aplicações web utilizando tecnologias como HTML (linguagem de marcação), CSS (responsável pela estilização) e JavaScript (linguagem de programação), garantindo que o conteúdo seja apresentado de forma clara, funcional e visualmente atraente. 
+
+Nessa fase do projeto, o frontend foi integrado ao backend para permitir a comunicação entre a interface do usuário e o servidor, possibilitando o envio e recebimento de dados de forma dinâmica e eficiente, melhorando a experiência geral do usuário.
+
+<div align="center">
+    <small><strong style="font-size: 12px;">Tela de Login (Figura 10);</strong></small><br>
+<img src="/assets/tela1_frontend.png">
+ <small style="margin-top: 4px; font-size: 10px;">Fonte: Material produzido pela autora (2025)</small>
+</div>
+
+A primeira tela que o usuário terá acesso é a tela de login, alcançada pelo endpoint /users/login. Nela, o usuário consegue adicionar o seu nome, e-mail e senha para acessar a aplicação.Caso estes não estejam cadastrados no banco de dados, o usuário receberá a mensagem de "credenciais inválidas".
+
+Para testar o funcionamento, recomendo utilizar o nome: Alice, o e-mail: teste@email.com e a senha: 1234.
+
+<div align="center">
+    <small><strong style="font-size: 12px;">Tela de visualização das atividades (Figura 11);</strong></small><br>
+<img src="/assets/tela2_frontend.png">
+ <small style="margin-top: 4px; font-size: 10px;">Fonte: Material produzido pela autora (2025)</small>
+</div>
+
+Assim que acessar, o usuário entrará na tela de visualização das atividades. Aqui, poderá clicar em cada uma delas, para abrir e ver a descrição da tarefa.
+
+Nessa tela, precisei realizar uma mudança quando comparada ao protótipo. Retirei o "fazendo", para que facilitasse o desenvolvimento do código, podendo assim, utilizar uma variável do tipo booleano, como mostrado no seguinte trecho de código, que implementei no arquivo "atividades.ejs":
+```js
+        if (tarefa.is_finished == true) {
+          sectionFeito.append(card);
+        } else {
+          sectionAFazer.append(card);
+        }
+```
+Dessa forma, foi possível realizar a separação na tela de quais atividades vão para "a fazer" e quais vão para "feito".
+
+<div align="center">
+    <small><strong style="font-size: 12px;">Tela da atividade de nível fácil (Figura 12);</strong></small><br>
+<img src="/assets/nivelfacil_frontend.png">
+ <small style="margin-top: 4px; font-size: 10px;">Fonte: Material produzido pela autora (2025)</small>
+</div>
+
+<div align="center">
+    <small><strong style="font-size: 12px;">Tela da atividade de nível médio (Figura 13);</strong></small><br>
+<img src="/assets/nivelmedio_frontend.png">
+ <small style="margin-top: 4px; font-size: 10px;">Fonte: Material produzido pela autora (2025)</small>
+</div>
+
+<div align="center">
+    <small><strong style="font-size: 12px;">Tela da atividade de nível difícil (Figura 14);</strong></small><br>
+<img src="/assets/niveldificil_frontend.png">
+ <small style="margin-top: 4px; font-size: 10px;">Fonte: Material produzido pela autora (2025)</small>
+</div>
+
+Para construir as últimas três telas, utilizei uma lógica baseada nas estruturas condicionais if, else if e else, junto com a manipulação direta dos elementos HTML usando o método getElementById.
+
+Ao carregar a página, o código captura o id da tarefa a partir da URL, que está no formato /atividades/{id}. Em seguida, ele faz uma requisição assíncrona ao backend para obter os dados da atividade correspondente.
+
+Com os dados recebidos, o conteúdo da tela é atualizado, preenchendo o título e a descrição da tarefa. Além disso, a partir do valor do campo nivel_dificuldade, o código altera dinamicamente o estilo do cartão (card) e a imagem exibida:
+
+Se o nível for 1 (fácil), aplica uma cor de fundo clara e exibe o ícone de livro fácil.
+
+Se for 2 (médio), usa uma cor intermediária e o ícone correspondente.
+
+Para outros valores (difícil), aplica uma cor escura e o ícone adequado.
+
+Por fim, o botão “Voltar” é configurado para redirecionar o usuário de volta para a página principal de atividades ao ser clicado.
+
+Essa lógica garante que cada tarefa seja exibida com uma aparência visual coerente com sua dificuldade, tornando a experiência mais intuitiva para o usuário.
+
+
+Além disso, as telas de questionário e de dados de produtividade foram retiradas do escopo atual do projeto. Apesar de ter desenvolvido parcialmente o código HTML e CSS dessas telas, o tempo disponível não foi suficiente para realizar uma integração adequada e garantir a melhor experiência possível. Por isso, essas funcionalidades ficaram definidas como próximos passos para futuras implementações e aprimoramentos.
+
 
 ## <a name="c4"></a>4. Desenvolvimento da Aplicação Web (Semana 8)
 
