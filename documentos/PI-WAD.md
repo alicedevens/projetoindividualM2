@@ -486,18 +486,29 @@ Além disso, as telas de questionário e de dados de produtividade foram retirad
 
 ### 4.1 Demonstração do Sistema Web (Semana 8)
 
-_VIDEO: Insira o link do vídeo demonstrativo nesta seção_
-_Descreva e ilustre aqui o desenvolvimento do sistema web completo, explicando brevemente o que foi entregue em termos de código e sistema. Utilize prints de tela para ilustrar._
+Para mostrar o resultado final da minha aplicação web, fiz um vídeo demonstrativo, no qual é possível entender melhor o fluxo de telas e como funciona a minha aplicação web. Segue o link: https://youtu.be/BUwJ-DZBt-c 
+
+Como mostrado no vídeo, a aplicação passa pela tela de login, pela tela geral das atividades e pelas telas das atividades com descrição, sendo que essas são separadas por cores, que definem o nível de dificuldade de cada uma.
+
+Para o desenvolvimento do Inflow, foi adotada a arquitetura MVC, o que proporcionou uma melhor organização do código, com a separação entre backend e frontend, facilitando a manutenção e a compreensão da integração entre as partes.
+
 
 ### 4.2 Conclusões e Trabalhos Futuros (Semana 8)
 
-_Indique pontos fortes e pontos a melhorar de maneira geral._
-_Relacione também quaisquer outras ideias que você tenha para melhorias futuras._
+O Inflow apresenta como pontos fortes a facilidade de manuseio e entendimento da aplicação, tornando a utilização desta mais fácil e em concordância às necessidades do usuário.
+
+Para melhorias futuras, gostaria de adicionar as telas de questionário e de dados de prdoutividade na minha integração do backend com o frontend, como já citado anteriormente na seção 3.7.
+
+Além disso, gostaria também de adicionar os botões de "+" na tela de atividades, com o objetivo de conseguir inserir novas atividades através da própria aplicação e não apenas por meio do banco de dados. 
+
+Apesar de ainda ter futuros passos importantíssimos para a melhor qualidade da minha aplicação, ela já se mostra integrada em certo nível e funcional no básico que deveria fazer.
 
 ## <a name="c5"></a>5. Referências
 
-_Incluir as principais referências de seu projeto, para que seu parceiro possa consultar caso ele se interessar em aprofundar. Um exemplo de referência de livro e de site:_<br>
+Algumas referências utilizadas para estudos ao longo do projeto, foram: 
 
----
+https://medium.com/@celionormando/arquitetura-mvc-e-princ%C3%ADpios-de-projeto-3d0b278ef910 
 
----
+https://www.designerd.com.br/tutorial-como-usar-o-figma/
+
+
