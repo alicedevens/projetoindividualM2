@@ -1,4 +1,4 @@
-# projetoindividualM2
+# Inflow 
 
 Este projeto é um boilerplate básico para uma aplicação Node.js seguindo o padrão MVC (Model-View-Controller), utilizando PostgreSQL como banco de dados.
 
@@ -139,6 +139,40 @@ meu-projeto/
 ├── server.js              # Arquivo principal que inicializa o servidor
 └── rest.http              # Teste de endpoints (opcional)
 ```
+## Prints das interfaces:
+<p align="center">
+  <strong style="font-size: 12px;">Tela de Login</strong><br>
+  <img src="assets/tela1_frontend.png" width="500"><br>
+  <small>Fonte: Material produzido pela autora (2025)</small>
+</p>
+
+<p align="center">
+  <strong style="font-size: 12px;">Tela de visualização das atividades</strong><br>
+  <img src="assets/tela2_frontend.png" width="500"><br>
+  <small>Fonte: Material produzido pela autora (2025)</small>
+</p>
+
+<p align="center">
+  <strong style="font-size: 12px;">Tela da atividade de nível fácil</strong><br>
+  <img src="assets/nivelfacil_frontend.png" width="500"><br>
+  <small>Fonte: Material produzido pela autora (2025)</small>
+</p>
+
+<p align="center">
+  <strong style="font-size: 12px;">Tela da atividade de nível médio</strong><br>
+  <img src="assets/nivelmedio_frontend.png" width="500"><br>
+  <small>Fonte: Material produzido pela autora (2025)</small>
+</p>
+
+<p align="center">
+  <strong style="font-size: 12px;">Tela da atividade de nível difícil</strong><br>
+  <img src="assets/niveldificil_frontend.png" width="500"><br>
+  <small>Fonte: Material produzido pela autora (2025)</small>
+</p>
+
+
+## Vídeo de demonstração da aplicação web:
+https://youtu.be/DSFZnw1iYt4
 
 Contribuição
 ------------
