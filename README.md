@@ -174,6 +174,15 @@ meu-projeto/
 ## Vídeo de demonstração da aplicação web:
 https://youtu.be/DSFZnw1iYt4
 
+## Tecnologias utilizadas:
+- Node.js 
+- Express.js 
+- PostgreSQL
+- Supabase
+- HTML
+- CSS
+- JavaScript
+
 Contribuição
 ------------
 
