@@ -486,22 +486,29 @@ Além disso, as telas de questionário e de dados de produtividade foram retirad
 
 ### 4.1 Demonstração do Sistema Web (Semana 8)
 
-Para mostrar o resultado final da minha aplicação web, fiz um vídeo demonstrativo, no qual é possível entender melhor o fluxo de telas e como funciona a minha aplicação web. Segue o link: https://youtu.be/BUwJ-DZBt-c 
+O sistema completo do Inflow foi desenvolvido com uma estrutura sólida e modular, utilizando Node.js com Express, PostgreSQL e o padrão arquitetural MVC. O frontend foi construído com EJS, HTML e CSS, integrando-se ao backend por meio de chamadas fetch, permitindo operações como cadastro, listagem e exclusão de atividades.
 
-Como mostrado no vídeo, a aplicação passa pela tela de login, pela tela geral das atividades e pelas telas das atividades com descrição, sendo que essas são separadas por cores, que definem o nível de dificuldade de cada uma.
+Para ilustrar melhor o funcionamento da aplicação, produzi um vídeo demonstrativo, disponível neste link: https://youtu.be/DSFZnw1iYt4. Nele, é possível acompanhar o fluxo completo de navegação, que inclui:
 
-Para o desenvolvimento do Inflow, foi adotada a arquitetura MVC, o que proporcionou uma melhor organização do código, com a separação entre backend e frontend, facilitando a manutenção e a compreensão da integração entre as partes.
+- Tela de login
+
+- Tela principal de atividades
+
+- Telas de descrição detalhada, organizadas por níveis de dificuldade com diferenciação por cores
+
+Essas telas foram implementadas como views da aplicação, conectadas ao backend por meio de rotas REST (GET, POST, DELETE), gerenciadas pelos controllers. A separação entre as camadas proporcionada pelo MVC facilitou não apenas a construção do sistema, mas também sua manutenção, escalabilidade e entendimento.
+
 
 
 ### 4.2 Conclusões e Trabalhos Futuros (Semana 8)
 
-O Inflow apresenta como pontos fortes a facilidade de manuseio e entendimento da aplicação, tornando a utilização desta mais fácil e em concordância às necessidades do usuário.
+O Inflow se destaca pela facilidade de uso e pela interface intuitiva, que tornam sua navegação simples e alinhada às necessidades do usuário final. A organização clara entre backend e frontend contribui para uma experiência mais fluida e compreensível.
 
-Para melhorias futuras, gostaria de adicionar as telas de questionário e de dados de prdoutividade na minha integração do backend com o frontend, como já citado anteriormente na seção 3.7.
+Como próximos passos, pretendo retomar a implementação das telas de questionário e de dados de produtividade, conforme mencionado na seção 3.7. Embora o HTML e o CSS dessas telas tenham sido parcialmente desenvolvidos, a integração com o backend ainda não foi concluída devido à limitação de tempo. A inclusão dessas funcionalidades é fundamental para oferecer os recursos de maneira mais completa.
 
-Além disso, gostaria também de adicionar os botões de "+" na tela de atividades, com o objetivo de conseguir inserir novas atividades através da própria aplicação e não apenas por meio do banco de dados. 
+Além disso, planejo adicionar botões "+" na tela de atividades, permitindo que novas atividades sejam cadastradas diretamente pela interface do sistema, sem depender da inserção manual no banco de dados. Essa melhoria tem como objetivo tornar a aplicação mais dinâmica e acessível ao usuário.
 
-Apesar de ainda ter futuros passos importantíssimos para a melhor qualidade da minha aplicação, ela já se mostra integrada em certo nível e funcional no básico que deveria fazer.
+Apesar de ainda haver etapas importantes para elevar a qualidade da aplicação, a versão atual já demonstra integração funcional e cumpre com os requisitos essenciais definidos para esta fase do projeto.
 
 ## <a name="c5"></a>5. Referências
 
